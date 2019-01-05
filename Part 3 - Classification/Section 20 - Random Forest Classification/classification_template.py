@@ -1,38 +1,36 @@
-# Classification
+# Classification template
 
-# Needed libraries
+# Importing the libraries
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Import dataset
-dataset = pd.read_csv("Social_Network_Ads.csv")
-X = dataset.iloc[:,[2,3]].values
-y = dataset.iloc[:,4].values
+# Importing the dataset
+dataset = pd.read_csv('Social_Network_Ads.csv')
+X = dataset.iloc[:, [2, 3]].values
+y = dataset.iloc[:, 4].values
 
-# Split dataset into training and test set
-from sklearn.model_selection import train_test_split
+# Splitting the dataset into the Training set and Test set
+from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
 
-
-# Feature scaling
+# Feature Scaling
 from sklearn.preprocessing import StandardScaler
-sc_X = StandardScaler()
-X_train = sc_X.fit_transform(X_train)
-X_test = sc_X.transform(X_test)
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
 
-# Fitting classifier to training set
-# Create Classifier
+# Fitting classifier to the Training set
+# Create your classifier here
 
-# Predicting test set results
+# Predicting the Test set results
 y_pred = classifier.predict(X_test)
 
-# Making confusion matrix
+# Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
 
-# Visualizing training set results
-
+# Visualising the Training set results
 from matplotlib.colors import ListedColormap
 X_set, y_set = X_train, y_train
 X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
@@ -44,7 +42,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Classifier (Test set)')
+plt.title('Classifier (Training set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
